@@ -1,14 +1,28 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding-top: 80px; 
-    padding-bottom: 80px; 
-    background-color: black;
+    padding-top: 40px; 
+    padding-bottom: 40px; 
+   
+}
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('back.png'); /* Replace with the path to your background image */
+    background-size: cover; /* Ensures the background covers the whole page */
+    background-repeat: no-repeat; /* Prevents the background from repeating */
+    background-position: center center; /* Centers the background image */
+    filter: blur(8px); /* Applies a blur effect to the background image */
+    z-index: -1; /* Ensures the background is behind all other content */
 }
 header img.logo {
     height: 50px;
     width: auto;
-    align-items: start
+    align-items: start;
+    margin-left: 20px;
 }
 
 header .left-img {
@@ -32,7 +46,35 @@ header {
 footer {
     bottom: 0;
 }
-
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: orange;
+    padding: 10px 20px;
+}
+.logo {
+    margin-left: 20px;
+}
+.nav-links {
+    display: flex;
+    list-style-type: none;
+    margin-right: 20px;
+}
+.nav-links li {
+    margin-left: 20px;
+    
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -55,18 +97,32 @@ nav ul li a {
     padding: 20px;
     border-radius: 10px;
     padding-right: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px orange;
     width: 400px;
     text-align: center;
     margin: 100px auto 20px auto
 }
 
-input, textarea {
+input, textarea,select {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.password-box .textbox input {
+    padding-right: 2.5rem; 
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: black;
 }
 
 textarea {
@@ -77,8 +133,8 @@ textarea {
 button {
     width: 100;
     padding: 10px;
-    background-color:orange;
-    color:black;
+    background-color:black;
+    color:orange;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -91,7 +147,7 @@ button {
 }
 
 button:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 10);
     color: orange;
     background-color:black;
 }
@@ -100,7 +156,9 @@ input[type="submit"]:hover {
     background-color: #28a745; 
     color: #fff;
 }
-
+select:hover {
+    border-color: orange;
+}
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover,
@@ -119,4 +177,40 @@ textarea:hover {
     height: px;
     object-fit: cover;
     margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+
+    header {
+        text-align: center;
+        
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .container {
+        width:50%;
+        margin: 100px 5%;
+        margin-left: 20%;
+        margin-right: 20%;
+        
+    }
+
+    .main-image {
+        padding: 60px 10px;
+        height: 150px;
+        width: 100;
+    }
+
+    .about-content, .contact-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
 }

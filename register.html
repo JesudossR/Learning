@@ -4,42 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script>   
+        function validatePasswords() {
+            var password1 = document.getElementById("password1").value;
+            var password2 = document.getElementById("password2").value;
+    
+            if (password1 !== password2) {
+                alert("Passwords do not match. Please re-enter.");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <div>
-            <img class="logo" src="Learnera.png" alt="learnEra">
-            <div>
-                <br>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <!-- <li><a href="register.html">Sign Up</a></li> -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    <header id="header"></header>
+    <div class="background"></div>
     <div class="container">
         <h2>Register</h2>
         <form action="/register" method="post">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="date" name="dob" placeholder="Date of Birth (dd-mm-yyyy)" required pattern="\d{2}-\d{2}-\d{4}">
-            <input type="number" name="age" placeholder="Age" required>
-            <input type="text" name="place" placeholder="Place" required>
-            <button type="submit">Register</button>
+            <div class="form-group">
+                <!-- <label for="name">Name:</label> -->
+                <input type="text" placeholder="Name" name="name" required>
+            </div>
+            <div class="form-group">
+                <!-- <label for="email">Email:</label> -->
+                <input type="text" placeholder="Mobile number" name="email" required>
+            </div>
+            <div class="form-group">
+                <!-- <label for="email">Email:</label> -->
+                <input type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="form-group">
+                <!-- <label for="dob">Date of Birth (DD-MM-YYYY):</label> -->
+                <input type="date" id="dob" placeholder="DOB" name="dob" required>
+            </div>
+            <div class="form-group">
+                <!-- <label for="age">Age:</label> -->
+                <input type="text" id="age" placeholder="Age" name="age" readonly>
+            </div>
+            <div class="form-group"> 
+                <div style="display: flex;" class="radio-group">
+                    <label>Gender:</label>
+                    <label><input type="radio" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" name="gender" value="female" required> Female</label>
+                    <label><input type="radio" name="gender" value="prefer-not-to-say" required> Prefer not to say</label>
+                </div>
+            </div>
+            <div class="form-group" style="display: columns; margin-top: 2px;">
+                <!-- <label for="country">Country:</label> -->
+                 <!-- <label for="country">country</label> -->
+                <!-- <select type="text" id="country" placeholder="Country" name="country" required></select> -->
+                <select id="country">
+                    <option value="">--Select Country--</option>
+                </select>
+                <select id="state">
+                    <option value="">State</option>
+                </select>
+                <select id="place">
+                    <option value="">Place</option>
+                </select>
+            </div> 
         </form>
+        <div class="form-group" >
+            <div class="textbox password-box " >
+                <input type="password" placeholder="Password" id="password1" required>
+            </div>
+            <div class="textbox password-box " >
+                <input type="password" placeholder="Re Type Password" id="password2" required>
+            </div>
+            <button type="submit" onclick="validatePasswords()">Register</button>
+        </div>
         <p>Already have an account? <a href="login.html">Login here</a></p>
     </div>
 
-    <footer></footer>
-
-    <script src="loadHeaderFooter.js"></script>
+    <footer id="footer"></footer>
+    <script src="scripts.js"></script>
+   
 </body>
 </html>
