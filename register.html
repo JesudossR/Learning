@@ -4,21 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="Images/Learnera.png">
     <link rel="stylesheet" href="styles.css">
     <script>   
-        function validatePasswords() {
+       function validatePasswords() {
+            var username = document.getElementById("username").value;
             var password1 = document.getElementById("password1").value;
             var password2 = document.getElementById("password2").value;
-    
             if (password1 !== password2) {
                 alert("Passwords do not match. Please re-enter.");
                 return false;
+            } else {
+                sessionStorage.setItem("registeredUsername", username);
+                sessionStorage.setItem("registeredPassword", password1);
+                alert("Registration successful! Redirecting to login page.");
+                window.location.href = "login.html";
             }
-        }
+          }
+        // function login() {
+        //     var loginPassword = document.getElementById("loginPassword").value;
+        //     var registeredPassword = sessionStorage.getItem("registeredPassword");
+
+        //     if (loginPassword === registeredPassword) {
+        //         alert("Logged in successfully!");
+        //         showHomePage();
+        //     } else {
+        //         alert("Incorrect password. Please try again.");
+        //     }
+        // }
+
+        // function showHomePage() {
+        //     document.body.innerHTML = `
+        //         <header id="header"></header>
+        //         <div class="background"></div>
+        //         <div class="container">
+        //             <h2>Welcome to the Home Page</h2>
+        //             <button onclick="signOut()">Sign Out</button>
+        //         </div>
+        //         <footer id="footer"></footer>
+        //     `;
+        // }
+        // function signOut() {
+        //     alert("You have been signed out.");
+        //     window.location.href = "login.html";
+        // }
     </script>
 </head>
 <body>
+    
     <header id="header"></header>
     <div class="background"></div>
     <div class="container">
@@ -34,7 +67,7 @@
             </div>
             <div class="form-group">
                 <!-- <label for="email">Email:</label> -->
-                <input type="email" placeholder="Email" name="email" required>
+                <input type="email" id="username" placeholder="Email" name="email" required>
             </div>
             <div class="form-group">
                 <!-- <label for="dob">Date of Birth (DD-MM-YYYY):</label> -->
@@ -52,6 +85,7 @@
                     <label><input type="radio" name="gender" value="prefer-not-to-say" required> Prefer not to say</label>
                 </div>
             </div>
+            
             <div class="form-group" style="display: columns; margin-top: 2px;">
                 <!-- <label for="country">Country:</label> -->
                  <!-- <label for="country">country</label> -->

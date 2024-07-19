@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             placeSelect.innerHTML = '<option value="">Place</option>'; // Clear place options
         } else {
             stateSelect.innerHTML = '<option value="">State</option>';
-            placeSelect.innerHTML = '<option value="">Place</option>'; // Clear place options
+            placeSelect.innerHTML = '<option value="">Place</option>';
         }
     }
 
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (selectedState && placeOptions[selectedState]) {
             populateSelect(placeSelect, ['Place', ...placeOptions[selectedState]]);
         } else {
-            placeSelect.innerHTML = '<option value="">Place</option>'; // Clear place options
+            placeSelect.innerHTML = '<option value="">Place</option>';
         }
     }
 
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('header').innerHTML = `
         <nav class="navbar">
             <div class="logo">
-            <a href="#"><img class="logo" src="Learnera.png" alt="learnEra"></a>
+            <a href="#"><img class="logo" src="Images/Learnera.png" alt="learnEra"></a>
             </div>
                 <ul>
                     <li><a href="index.html">Home</a></li>
