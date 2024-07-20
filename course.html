@@ -6,97 +6,7 @@
     <title>Courses</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            margin-top: 100px;
-            margin-bottom: 100px;
-        }
-
-        .course-card {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-    
-        }
-
-        .course-card img {
-            width: 150px;
-            height: auto;
-            border-radius: 8px 0 0 8px;
-        }
-
-        .course-details {
-            padding: 20px;
-        }
-
-        .course-details h3 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-
-        .course-details p {
-            margin: 10px 0;
-        }
-
-        .course-details button {
-            padding: 10px 15px;
-            background-color:orange;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .course-details button:hover {
-            background-color:black;
-            color: orange;
-        }
-
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            z-index: 1000;
-            display: none;
-        }
-
-        .popup .close-btn {
-            display: block;
-            text-align: right;
-        }
-
-        .popup .close-btn button {
-            background-color: #f44336;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .popup .close-btn button:hover {
-            background-color: #d32f2f;
-        }
-    </style>
+    <link rel="stylesheet" href="course.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -105,6 +15,30 @@
                 $(".popup .content").html(courseDetails);
                 $(".popup").fadeIn();
                 $(".course-card").not(this).fadeOut();
+            });
+
+            $(".course-details button").click(function(event) {
+                event.stopPropagation(); // Prevents the card click event from firing
+                var courseName = $(this).siblings("h3").text();
+                var courseLink = "";
+                switch(courseName) {
+                    case "Java":
+                        courseLink = "https://www.youtube.com/watch?v=xk4_1vDrzzo";
+                        break;
+                    case "Python":
+                        courseLink = "https://www.youtube.com/watch?v=XKHEtdqhLK8&pp=ygUNUHl0aG9uIGNvdXJzZQ%3D%3D";
+                        break;
+                    case "Front End Development":
+                        courseLink = "https://www.youtube.com/watch?v=gjdBWv0zGb8&pp=ygUlZnJvbnQgZW5kIHdlYiBkZXZlbG9wbWVudCBmdWxsIGNvdXJzZQ%3D%3D";
+                        break;
+                    // Add more cases as needed
+                    default:
+                        courseLink = "#";
+                }
+                alert("Successfully enrolled in " + courseName);
+                $(".popup .content").html(`<p>You are successfully enrolled in ${courseName}. Click <a href="${courseLink}" target="_blank">here</a> to access the course.</p>`);
+                $(".popup").fadeIn();
+                $(".course-card").not($(this).closest(".course-card")).fadeOut();
             });
 
             $(".close-btn button").click(function() {
@@ -118,14 +52,13 @@
     <header id="header">
         <nav class="navbar">
             <div class="logo">
-            <a href="index.html"><img class="logo" src="Images/Learnera.png" alt="learnEra"></a>
+                <a href="index.html"><img class="logo" src="Images/Learnera.png" alt="learnEra"></a>
             </div>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <button onclick="signOut()">Sign Out</button>
-                </ul>
-            </nav>
-        </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <button onclick="signOut()">Sign Out</button>
+            </ul>
+        </nav>
     </header>
     <div class="background"></div>
     <div class="container">
@@ -135,7 +68,6 @@
             <div class="course-details">
                 <h3>Java</h3>
                 <p>------</p>
-                
                 <button>Enroll Now</button>
             </div>
         </div>
@@ -143,16 +75,14 @@
             <img src="Images/python.jpg" alt="Course 2">
             <div class="course-details">
                 <h3>Python</h3>
-                <p>
-                    -------
-                </p>
+                <p>-------</p>
                 <button>Enroll Now</button>
             </div>
         </div>
         <div class="course-card">
             <img src="Images/frontend.jpg" alt="Course 3">
             <div class="course-details">
-                <h3>Front End Devlopement</h3>
+                <h3>Front End</h3>
                 <p>------</p>
                 <button>Enroll Now</button>
             </div>
@@ -161,9 +91,7 @@
     </div>
     <div class="popup">
         <div class="close-btn"><button>Close</button></div>
-        <div class="content">
-            
-        </div>
+        <div class="content"></div>
     </div>
     <footer>
         <p>&copy; 2024 Learnera. All rights reserved.</p>

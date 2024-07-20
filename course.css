@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.course-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.course-card img {
+    width: 150px;
+    height: auto;
+    border-radius: 8px 0 0 8px;
+}
+
+.course-details {
+    padding: 20px;
+}
+
+.course-details h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.course-details p {
+    margin: 10px 0;
+}
+
+.course-details button {
+    padding: 10px 15px;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.course-details button:hover {
+    background-color: black;
+    color: orange;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    display: none;
+}
+
+.popup .close-btn {
+    display: block;
+    text-align: right;
+}
+
+.popup .close-btn button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup .close-btn button:hover {
+    background-color: #d32f2f;
+}

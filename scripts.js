@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // });
 
     function populateSelect(selectElement, options) {
-        selectElement.innerHTML = '';
+        selectElement.innerText = "";
         options.forEach(option => {
             const opt = document.createElement('option');
             opt.value = option;
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return age;
     }
-    dobInput.addEventListener('change', function () {
+    dobInput?.addEventListener('change', function () {
         const dob = dobInput.value;
         if (dob) {
             const age = calculateAge(dob);
@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
 
 });
+
 document.addEventListener("DOMContentLoaded", function() {
     // Add default header
     document.getElementById('header').innerHTML = `
