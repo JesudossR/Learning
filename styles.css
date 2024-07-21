@@ -80,7 +80,19 @@ nav ul {
     padding: 0;
     margin: 0;
 }
-
+.form-group input{
+    margin-left: 10px;
+}
+.form-group.gender {
+    align-items: baseline;
+}
+.form-group.gender .gender-options {
+    display: flex;
+    gap: 15px;
+}
+.form-group.gender .gender-options label {
+    margin: 0;
+}
 nav ul li {
     display: inline;
     margin: 0 10px;
@@ -102,7 +114,10 @@ nav ul li a {
     text-align: center;
     margin: 100px auto 20px auto
 }
-
+.radio-group{
+    display:flex;
+    justify-content: center;
+}
 input, textarea,select {
     width: 100%;
     padding: 10px;
@@ -152,6 +167,39 @@ button:hover {
     background-color:black;
 }
 
+.required {
+    color: red;
+    margin-left: 5px;
+}
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #F4A460; /* Same as your form background color */
+    border-radius: 10px;
+}
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.form-group label {
+    width: 100px;
+    margin-right: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+.form-group input,textarea,select{
+    flex: 1;
+    padding: 5px;
+}
+.form-group input[type="date"] {
+    padding: 4px;
+}
+.alert {
+    color: red;
+    margin-top: 10px;
+}
 input[type="submit"]:hover {
     background-color: #28a745; 
     color: #fff;

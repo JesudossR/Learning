@@ -6,115 +6,120 @@
     <title>Registration Page</title>
     <link rel="icon" type="image/png" href="Images/Learnera.png">
     <link rel="stylesheet" href="styles.css">
-    <script>   
-       function validatePasswords() {
-            var username = document.getElementById("username").value;
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+
+            var name = document.getElementById("name").value;
+            var mobile = document.getElementById("mobile").value;
+            var email = document.getElementById("email").value;
+            var dob = document.getElementById("dob").value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var country = document.getElementById("country").value;
+            var state = document.getElementById("state").value;
+            var place = document.getElementById("place").value;
             var password1 = document.getElementById("password1").value;
             var password2 = document.getElementById("password2").value;
-            if (password1 !== password2) {
-                alert("Passwords do not match. Please re-enter.");
-                return false;
-            } else {
-                sessionStorage.setItem("registeredUsername", username);
-                sessionStorage.setItem("registeredPassword", password1);
-                alert("Registration successful! Redirecting to login page.");
-                window.location.href = "login.html";
+            var alertBox = document.getElementById("alert");
+
+            if (!name || !mobile || !email || !dob || !gender || !country || !state || !place || !password1 || !password2) {
+                alertBox.innerText = "All fields must be filled out";
+                return;
             }
-          }
-        // function login() {
-        //     var loginPassword = document.getElementById("loginPassword").value;
-        //     var registeredPassword = sessionStorage.getItem("registeredPassword");
 
-        //     if (loginPassword === registeredPassword) {
-        //         alert("Logged in successfully!");
-        //         showHomePage();
-        //     } else {
-        //         alert("Incorrect password. Please try again.");
-        //     }
-        // }
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alertBox.innerText = "Please enter a valid email address";
+                return;
+            }
 
-        // function showHomePage() {
-        //     document.body.innerHTML = `
-        //         <header id="header"></header>
-        //         <div class="background"></div>
-        //         <div class="container">
-        //             <h2>Welcome to the Home Page</h2>
-        //             <button onclick="signOut()">Sign Out</button>
-        //         </div>
-        //         <footer id="footer"></footer>
-        //     `;
-        // }
-        // function signOut() {
-        //     alert("You have been signed out.");
-        //     window.location.href = "login.html";
-        // }
+            var mobilePattern = /^[6-9]\d{9}$/;
+            if (!mobilePattern.test(mobile)) {
+                alertBox.innerText = "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9";
+                return;
+            }
+
+            if (password1 !== password2) {
+                alertBox.innerText = "Passwords do not match. Please re-enter.";
+                return;
+            }
+
+            sessionStorage.setItem("registeredUsername", email);
+            sessionStorage.setItem("registeredPassword", password1);
+            alert("Registration successful! Redirecting to login page.");
+            window.location.href = "login.html";
+        }
     </script>
 </head>
 <body>
-    
     <header id="header"></header>
     <div class="background"></div>
     <div class="container">
         <h2>Register</h2>
-        <form action="/register" method="post">
-            <div class="form-group">
-                <!-- <label for="name">Name:</label> -->
-                <input type="text" placeholder="Name" name="name" required>
+        <form onsubmit="validateForm(event)">
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="name">Name<span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Name" required>
             </div>
-            <div class="form-group">
-                <!-- <label for="email">Email:</label> -->
-                <input type="text" placeholder="Mobile number" name="email" required>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="mobile">Mobile<span class="required">*</span></label>
+                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" maxlength="10" required 
+                   oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);" 
+                   onkeypress="if(event.key.length === 1 && /\D/.test(event.key)) event.preventDefault();">
             </div>
-            <div class="form-group">
-                <!-- <label for="email">Email:</label> -->
-                <input type="email" id="username" placeholder="Email" name="email" required>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="email">Email<span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
-            <div class="form-group">
-                <!-- <label for="dob">Date of Birth (DD-MM-YYYY):</label> -->
-                <input type="date" id="dob" placeholder="DOB" name="dob" required>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="dob">D.O.B<span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" placeholder="DOB" required>
             </div>
-            <div class="form-group">
-                <!-- <label for="age">Age:</label> -->
-                <input type="text" id="age" placeholder="Age" name="age" readonly>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="age">Age<span class="required">*</span></label>
+                <input type="text" id="age" name="age" placeholder="Age" readonly>
             </div>
-            <div class="form-group"> 
-                <div style="display: flex;" class="radio-group" >
-                    <label>Gender:</label>
-                    <label><input type="radio" name="gender" value="male" required> Male</label>
-                    <label><input type="radio" name="gender" value="female" required> Female</label>
-                    <label><input type="radio" name="gender" value="prefer-not-to-say" required> Prefer not to say</label>
+            <div class="form-group gender">
+                <label for="gender">Gender <span style="color: red;">*</span></label>
+                <div class="gender-options">
+                    <label><input type="radio" id="male" name="gender" value="male" required> Male</label>
+                    <label><input type="radio" id="female" name="gender" value="female" required> Female</label>
+                    <label><input type="radio" id="prefer-not-to-say" name="gender" value="prefer-not-to-say" required> Others </label>
                 </div>
             </div>
-            
-            <div class="form-group" style="display: columns; margin-top: 2px;">
-                <!-- <label for="country">Country:</label> -->
-                 <!-- <label for="country">country</label> -->
-                <!-- <select type="text" id="country" placeholder="Country" name="country" required></select> -->
-                <select id="country">
-                    <option value="Select Country">--Select Country--</option>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="country">Country<span class="required">*</span></label>
+                <select id="country" name="country" required>
+                    <option value="">--Select Country--</option>
                 </select>
-                <select id="state">
-                    <option value="State">State</option>
+            </div>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="state">State<span class="required">*</span></label>
+                <select id="state" name="state" required>
+                    <option value="">State</option>
                 </select>
-                <select id="place">
-                    <option value="Place">Place</option>
+            </div>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="place">Place<span class="required">*</span></label>
+                <select id="place" name="place" required>
+                    <option value="">Place</option>
                 </select>
-            </div> 
+            </div>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="password1">Password<span class="required">*</span></label>
+                <input type="password" id="password1" minlength="10" name="password1" placeholder="Password" required>
+            </div>
+            <div class="form-group" style="display: flex;">
+                <label style="margin-top: 15px; padding: 2px;" for="password2">ReType Password<span class="required">*</span></label>
+                <input type="password" id="password2" name="password2" required 
+                   pattern="(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=?]).{8,}">
+            </div>
+            <button type="submit">Register</button>
+            <div id="alert" class="alert"></div>
         </form>
-        <div class="form-group" >
-            <div class="textbox password-box " >
-                <input type="password" placeholder="Password" id="password1" required>
-            </div>
-            <div class="textbox password-box " >
-                <input type="password" placeholder="Re Type Password" id="password2" required>
-            </div>
-            <button type="submit" onclick="validatePasswords()">Register</button>
-        </div>
         <p>Already have an account? <a href="login.html">Login here</a></p>
     </div>
-
     <footer id="footer"></footer>
     <script src="scripts.js"></script>
-   
 </body>
 </html>

@@ -12,14 +12,21 @@
 
             var username = document.getElementById("username").value;
             var loginPassword = document.getElementById("loginPassword").value;
+            var alertBox = document.getElementById("alert");
+
             var registeredUsername = sessionStorage.getItem("registeredUsername");
             var registeredPassword = sessionStorage.getItem("registeredPassword");
 
+            if (username === "" || loginPassword === "") {
+                alertBox.innerText = "All fields must be filled out";
+                return;
+            }
+
             if (username === registeredUsername && loginPassword === registeredPassword) {
-                alert("Logged in successfully!");
+                alertBox.innerText = "Logged in successfully!";
                 showHomePage();
             } else {
-                alert("Incorrect username or password. Please try again.");
+                alertBox.innerText = "Incorrect username or password. Please try again.";
             }
         }
 
@@ -27,17 +34,17 @@
             document.body.innerHTML = `
                 <header id="header">
                     <nav class="navbar">
-            <div class="logo">
-            <a href="#"><img class="logo" src="Learnera.png" alt="learnEra"></a>
-            </div>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                   <button onclick="signOut()">Sign Out</button>
-                </ul>
-            </nav>
-        </div></header>
+                        <div class="logo">
+                            <a href="#"><img class="logo" src="Learnera.png" alt="learnEra"></a>
+                        </div>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <button onclick="signOut()">Sign Out</button>
+                        </ul>
+                    </nav>
+                </header>
                 <div class="background"></div>
                 <div class="container">
                     <h2>Welcome, begin with the course</h2>
@@ -59,9 +66,20 @@
     <div class="container">
         <h2>Login</h2>
         <form onsubmit="login(event)">
-            <input type="text" id="username" name="username" placeholder="Username" required>
-            <input id="loginPassword" type="password" name="password" placeholder="Password" required>
+            <div class="form-group" style="display: flex;">
+            
+                <label style="margin-top: 15px; padding: 2px;" for="username">Username<span class="required">*</span></label>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+               </div> 
+               <div class="form-group" style="display: flex;">
+    
+                <label style="margin-top: 15px; padding: 2px;" for="loginPassword">Password<span class="required">*</span></label>
+                <input id="loginPassword" type="password" name="password" placeholder="Password" required>
+               </div> 
+            
+           
             <button type="submit">Login</button>
+            <div id="alert" class="alert"></div>
         </form>
         <p>Don't have an account? <a href="register.html">Register here</a></p>
     </div>
